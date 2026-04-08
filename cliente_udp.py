@@ -29,14 +29,14 @@ def send_request(request_id):
         client_socket.sendto(mensagem.encode('utf-8'), (HOST, PORT))
         
         resposta, server = client_socket.recvfrom(BUFFER_SIZE)
-        log(f"✅ Cliente {request_id:2d}: {resposta.decode('utf-8')[:50]}...")
+        log(f"Cliente {request_id:2d}: {resposta.decode('utf-8')[:50]}...")
         
         client_socket.close()
         
     except socket.timeout:
-        log(f"⏱️ Cliente {request_id:2d}: Timeout")
+        log(f"{request_id:2d}: Timeout")
     except Exception as e:
-        log(f"❌ Cliente {request_id:2d}: Erro - {e}")
+        log(f"{request_id:2d}: Erro - {e}")
 
 
 def main():
@@ -48,14 +48,14 @@ def main():
     threads = []
     start_time = time.time()
     
-    log("🚀 Disparando threads...")
+    log("...Disparando threads...")
     
     for i in range(1, NUM_REQUESTS + 1):
         t = threading.Thread(target=send_request, args=(i,))
         threads.append(t)
         t.start()
     
-    log(f"📤 {NUM_REQUESTS} requisições enviadas!")
+    log(f"{NUM_REQUESTS} requisições enviadas!")
     
     for t in threads:
         t.join()
@@ -63,8 +63,8 @@ def main():
     total_time = time.time() - start_time
     
     log("=" * 60)
-    log(f"✨ CONCLUÍDO em {total_time:.2f}s")
-    log(f"🎯 Com threads: ~2s | Sem threads: ~{NUM_REQUESTS*2}s")
+    log(f">⩊< CONCLUÍDO em {total_time:.2f}s")
+    log(f"-> Com threads: ~2s | Sem threads: ~{NUM_REQUESTS*2}s")
     log("=" * 60)
 
 

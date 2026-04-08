@@ -19,23 +19,23 @@ def log(msg):
 
 
 def handle_request(data, client_addr, request_id, server_socket):
-    log(f"🟢 Thread iniciada para Req {request_id} - {client_addr}")
+    log(f"Thread iniciada para Req {request_id} - {client_addr}")
     
     try:
         mensagem = data.decode('utf-8')
-        log(f"📥 Req {request_id}: '{mensagem}'")
+        log(f"Req {request_id}: '{mensagem}'")
         
-        log(f"⏳ Req {request_id} - Processando (sleep 2s)...")
+        log(f"Req {request_id} - Processando (sleep 2s)...")
         time.sleep(2)
         
         resposta = f"Resposta UDP req {request_id}: '{mensagem}' OK!"
         server_socket.sendto(resposta.encode('utf-8'), client_addr)
-        log(f"📤 Req {request_id} - Resposta enviada")
+        log(f"Req {request_id} - Resposta enviada")
         
     except Exception as e:
-        log(f"❌ Erro req {request_id}: {e}")
+        log(f"Erro req {request_id}: {e}")
     
-    log(f"🔴 Thread finalizada para Req {request_id}")
+    log(f"Thread finalizada para Req {request_id}")
 
 
 def main():
@@ -49,8 +49,8 @@ def main():
     
     try:
         server_socket.bind((HOST, PORT))
-        log(f"🚀 Servidor UDP iniciado em {HOST}:{PORT}")
-        log(f"📋 Aguardando datagramas... (Ctrl+C para encerrar)")
+        log(f"Servidor UDP iniciado em {HOST}:{PORT}")
+        log(f"Aguardando datagramas...")
         log("-" * 60)
         
         request_counter = 0
@@ -59,7 +59,7 @@ def main():
             data, client_addr = server_socket.recvfrom(BUFFER_SIZE)
             request_counter += 1
             
-            log(f"📨 Datagrama de {client_addr} (Req #{request_counter})")
+            log(f"Datagrama de {client_addr} (Req #{request_counter})")
             
             request_thread = threading.Thread(
                 target=handle_request,
@@ -69,13 +69,13 @@ def main():
             request_thread.start()
             
             active_threads = threading.active_count() - 1
-            log(f"📊 Threads ativas: {active_threads}")
+            log(f"-> Threads ativas: {active_threads}")
             
     except KeyboardInterrupt:
-        log("\n⚠️ Servidor encerrado")
+        log("\n Servidor encerrado")
     finally:
         server_socket.close()
-        log("🔌 Socket fechado")
+        log("Socket fechado")
 
 
 if __name__ == "__main__":
