@@ -1,6 +1,9 @@
 # Atividade Prática: Cliente/Servidor TCP e UDP com Multithreading
 
 ## 📚 Disciplina de  REDES DE COMUNICAÇÃO E APLICAÇÕES DISTRIBUIDAS (IOT)
+Um servidor TCP é um programa de rede que aguarda e gerencia conexões de clientes usando o Transmission Control Protocol (TCP). Ele garante a entrega confiável, ordenada e sem erros de pacotes de dados, sendo fundamental para serviços como HTTP, e-mail (SMTP) e transferência de arquivos (FTP).
+
+Já um servidor UDP é um programa de rede que utiliza o User Datagram Protocol (UDP) para receber dados sem estabelecer uma conexão prévia, oferecendo alta velocidade e baixa latência. Diferente do TCP, ele não garante a entrega, a ordem dos pacotes ou a correção de erros, sendo ideal para streaming de vídeo, jogos online e VoIP.
 
 ## Objetivo
 
@@ -11,7 +14,6 @@ Desenvolver em Python dois servidores (um TCP e um UDP) e dois scripts de client
 
 Vídeo de Demonstração (YouTube):
 
-Nota: Entregas sem o link do vídeo demonstrando o código em funcionamento não serão avaliadas.
 ## 📁 Arquivos
 
 | Arquivo | Descrição |
